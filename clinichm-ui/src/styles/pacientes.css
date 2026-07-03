@@ -1,0 +1,28 @@
+.boton-eliminar, .boton-editar {
+    position: relative; /* Cambiar a relativo dentro del contenedor */
+    top: auto;
+    left: auto;
+    background: rgba(214, 158, 65, 0.40)  !important; /* Cambiar el color fijo del botón "Eliminar" */
+    border-radius: 4px;
+    outline: 1px solid #D69E41;
+    outline-offset: -1px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 0 20px;
+    z-index: 1000;
+}
+
+.boton-eliminar:hover {
+    background: rgba(214, 158, 65, 0.20) !important; /* Cambiar el color hover del botón "Eliminar" */
+}
+
+.boton-editar {
+    background: #D69E41 !important;
+}
+
+.boton-editar:hover {
+    background: #b58436 !important;
+}

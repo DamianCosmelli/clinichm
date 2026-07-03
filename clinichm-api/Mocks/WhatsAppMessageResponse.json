@@ -1,0 +1,34 @@
+{
+    "changes": [
+      {
+        "value": {
+          "messaging_product": "whatsapp",
+          "metadata": {
+            "display_phone_number": "15555241030",
+            "phone_number_id": "39764803642578"
+          },
+          "contacts": [
+            {
+              "profile": {
+                "name": "manfra.io"
+              },
+              "wa_id": "5519995716036"
+            }
+          ],
+          "messages": [
+            {
+              "from": "5519995716036",
+              "id": "wamid.HBgNTUxOTk1NTc2NTkAhJzhiUCABYIDhFNkFBNEU2QjVQN2Y3Q1NSF0REOTI0CDkzREdA==",
+              "timestamp": "1713532226",
+              "text": {
+                "body": "Hello. This is a test message"
+              },
+              "type": "text"
+            }
+          ]
+        },
+        "field": "messages"
+      }
+    ]
+  }
+  

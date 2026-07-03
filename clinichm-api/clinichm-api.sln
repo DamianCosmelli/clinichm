@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clinichm-api", "clinichm-api.csproj", "{8722562D-632A-3640-4753-81E86F1CD34D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{0F5B3ED7-A289-4655-B07E-7B9F66B7883E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8722562D-632A-3640-4753-81E86F1CD34D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8722562D-632A-3640-4753-81E86F1CD34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8722562D-632A-3640-4753-81E86F1CD34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8722562D-632A-3640-4753-81E86F1CD34D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F5B3ED7-A289-4655-B07E-7B9F66B7883E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F5B3ED7-A289-4655-B07E-7B9F66B7883E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F5B3ED7-A289-4655-B07E-7B9F66B7883E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F5B3ED7-A289-4655-B07E-7B9F66B7883E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B96D8AFD-3DD2-4129-BAD8-79934C5AD489}
+	EndGlobalSection
+EndGlobal

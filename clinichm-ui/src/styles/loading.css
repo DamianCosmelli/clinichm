@@ -1,0 +1,13 @@
+/* Estilos personalizados para la página PreparingSite */
+
+/* Si necesitas ajustar algo que no se puede lograr con Tailwind */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin 3s linear infinite; /* Cambiar duración a 3 segundos */
+}

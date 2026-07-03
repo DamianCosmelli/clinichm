@@ -1,0 +1,35 @@
+.boton-reenviar-whatsapp {
+  width: 250px;
+  height: 48px;
+  padding: 10px;
+  background: rgba(214, 158, 65, 0.2);
+  border-radius: 4px;
+  outline: 1px solid #D69E41;
+  outline-offset: -1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #111111;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 22.4px;
+}
+
+.boton-reenviar-sms {
+  width: 250px;
+  height: 48px;
+  padding: 10px;
+  background: #D69E41;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #111111;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 22.4px;
+}

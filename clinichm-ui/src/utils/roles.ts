@@ -1,0 +1,18 @@
+export const ROLES = {
+  ADMIN: "Admin",
+  TURNOS: "Turnos",
+  CAJA: "Caja",
+  RECEPCION: "Recepcion",
+  STOCK: "Stock",
+} as const;
+
+export const ROLE_GROUPS = {
+  ALL_PRIVATE: [ROLES.ADMIN, ROLES.TURNOS, ROLES.CAJA, ROLES.RECEPCION, ROLES.STOCK],
+  ALL_ADMINISTRATIVE: [ROLES.ADMIN, ROLES.TURNOS, ROLES.CAJA, ROLES.RECEPCION],
+  ALL_PACIENTES: [ROLES.ADMIN, ROLES.TURNOS, ROLES.RECEPCION],
+  ALL_AGENDA: [ROLES.ADMIN, ROLES.TURNOS, ROLES.RECEPCION],
+  ONLY_ADMIN: [ROLES.ADMIN],
+}as const;
+
+export type RoleKeys = keyof typeof ROLES;
+export type RoleValues = typeof ROLES[RoleKeys];

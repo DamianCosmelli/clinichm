@@ -1,0 +1,6 @@
+.devcontainer/
+.vscode/
+obj/
+bin/
+logs/
+Migrations/

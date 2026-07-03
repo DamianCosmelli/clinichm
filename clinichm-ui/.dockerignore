@@ -1,0 +1,29 @@
+# Ignorar node_modules y dependencias instaladas
+node_modules
+
+# Ignorar directorios de construcción y salida
+dist
+build
+
+# Ignorar archivos de configuración del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de control de versiones
+.git
+.gitignore
+
+# Ignorar logs y archivos temporales
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignorar configuraciones de editores de texto
+.vscode
+.idea
+*.swp
+
+# Ignorar otros archivos innecesarios
+coverage
+*.log
+*.cache

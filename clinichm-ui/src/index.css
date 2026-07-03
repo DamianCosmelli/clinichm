@@ -1,0 +1,58 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap'); /* Importar la fuente Poppins */
+
+@import "tailwindcss";
+@import "./styles/formularioNuevoTurno.css";
+@import "./styles/cards.css";
+@import "./styles/caja.css";
+@import "./styles/calendarCustom.css";
+
+@layer base {
+  :root {
+    --font-poppins: 'Poppins', sans-serif;
+    --color-fondo-layout: #111111;
+    --color-burbela-items: #85673B;
+    --color-fondo-logo: #272626;
+    --color-texto-principal: #FBFBFB;
+    --color-texto-secundario: #7A7979;
+    --color-fondo-card: #FBFBFB;
+    --color-fondo-contenedor: #F3F3F3;
+  }
+}
+
+@layer utilities {
+  .font-poppins {
+    font-family: var(--font-poppins);
+  }
+  .bg-fondo-layout {
+    background-color: var(--color-fondo-layout);
+  }
+  .bg-fondo-logo {
+    background-color: var(--color-fondo-logo);
+  }
+  .bg-burbela-items {
+    background-color: var(--color-burbela-items);
+  }
+  .hover-burbela-items:hover {
+    background-color: var(--color-burbela-items); /* Corregir espacio extra */
+  }
+  .text-principal {
+    color: var(--color-texto-principal);
+  }
+  .text-secundario {
+    color: var(--color-texto-secundario); 
+  }
+  .bg-fondo-card {
+    background-color: var(--color-fondo-card);
+  }
+  .bg-fondo-contenedor {
+    background-color: var(--color-fondo-contenedor);
+  }
+  .bg-blanco {
+    background-color: #FFFFFF; 
+  }
+  .text-negro {
+    color: #111111; 
+  }
+    
+}

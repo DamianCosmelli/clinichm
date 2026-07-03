@@ -1,0 +1,41 @@
+services: 
+        app: 
+          image: mcr.microsoft.com/dotnet/sdk:8.0
+          environment:
+            ASPNETCORE_ENVIRONMENT: 'Development'
+          volumes: 
+            - ./..:/clinichm-api
+          
+          command: sleep infinity
+          networks:
+            red_compartida:
+              ipv4_address: 172.28.0.2
+          depends_on: 
+            - mysql
+        
+        mysql: 
+          image: mysql:8.0.40
+          command: --default-authentication-plugin=mysql_native_password --lower_case_table_names=1 --sql_mode=""
+          restart: always
+          environment: 
+            MYSQL_ROOT_PASSWORD: 'root'
+            MYSQL_USER: 'dbuser'
+            MYSQL_PASSWORD: 'dbuser'
+          
+          ports: 
+          - '3306:3306'
+          networks:
+            red_compartida:
+              ipv4_address: 172.28.0.10
+          volumes: 
+          - ./mysql-data:/var/lib/mysql
+
+
+networks:
+  red_compartida:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.28.0.0/24"
+          gateway: "172.28.0.1"

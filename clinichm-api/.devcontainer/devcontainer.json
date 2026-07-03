@@ -1,0 +1,20 @@
+{
+  "name": "DotNet 8 & MySQL 8 DevContainer",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/clinichm-api",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.csdevkit",
+        "ms-vscode-remote.remote-containers"
+      ]
+    }
+  },
+  "postCreateCommand": "chmod +x .devcontainer/setup.sh; ./.devcontainer/setup.sh",
+  "remoteUser": "root"
+}

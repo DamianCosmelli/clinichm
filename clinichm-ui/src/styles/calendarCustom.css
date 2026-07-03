@@ -1,0 +1,100 @@
+/* Oculta completamente la columna de horas */
+.hide-time-gutter .rbc-time-gutter,
+.hide-time-gutter .rbc-time-header-gutter {
+  display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+/* Ajusta el layout general para que no deje hueco */
+.hide-time-gutter .rbc-time-view {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+}
+
+/* Ajusta la sección de contenido del calendario */
+.hide-time-gutter .rbc-time-content {
+  display: flex !important;
+}
+
+/* Asegura que las columnas de día ocupen todo el espacio */
+.hide-time-gutter .rbc-day-slot {
+  flex: 1 !important;
+}
+
+/* Ajusta el ancho de la columna de fecha al contenido */
+.rbc-time-header-gutter {
+    width: auto !important;
+    white-space: nowrap;
+    padding: 0 4px; /* opcional, para no pegar el texto al borde */
+  }
+  
+  /* También aplicamos a la celda de horas */
+  .rbc-time-gutter {
+    width: auto !important;
+    white-space: nowrap;
+    padding: 0 4px;
+  }
+  
+ /* Asegura que el contenido no se corte y se muestre en una sola línea */
+.rbc-time-header-gutter,
+.rbc-time-gutter {
+  width: fit-content !important;
+  min-width: max-content !important;
+  white-space: nowrap;
+  padding: 0 6px; /* opcional para respirar un poco */
+  box-sizing: content-box;
+}
+
+/* Evita que el grid o layout general limite esa columna */
+.rbc-time-view {
+    grid-template-columns: auto 1fr !important;
+  }
+  
+/* Define un ancho consistente para ambas: header y columna de horas */
+.rbc-time-header-gutter,
+.rbc-time-gutter {
+  width: 80px !important; /* Ajustá este valor según el texto del header */
+  min-width: 80px !important;
+  max-width: 80px !important;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+/* Centra vertical y horizontalmente las horas */
+.rbc-time-gutter .rbc-timeslot-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Asegura que ocupe el alto completo */
+  }
+/* Oculta la hora predeterminada en eventos de vista week y day */
+.hide-event-label .rbc-event-label {
+  display: none;
+}
+.input-filters {
+  width: auto !important; /* Ajustar Ancho automáticamente */
+  height: auto; /* Ajustar altura automáticamente */
+  padding: 10px; /* Padding especificado */
+  margin: 0 16px; /* Margen horizontal agregado */
+  background-color: var(--color-fondo-card);
+  border-radius: 4px; /* Borde redondeado */
+  outline: 1px solid #5E5D5D; /* Borde */
+  outline-offset: -1px; /* Offset del borde */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 50px; /* Espaciado interno */
+}
+.input-hora {
+
+  padding: 10px; /* Padding especificado */
+  background-color: var(--color-fondo-card);
+  border-radius: 4px; /* Borde redondeado */
+  outline: 1px solid #5E5D5D; /* Borde */
+  outline-offset: -1px; /* Offset del borde */
+}

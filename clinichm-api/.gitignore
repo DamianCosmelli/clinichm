@@ -1,0 +1,8 @@
+.devcontainer/mysql-data/
+.vscode/
+obj/
+bin/
+logs/
+Migrations/
+appsettings.Production.json
+

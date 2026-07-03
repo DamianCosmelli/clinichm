@@ -1,0 +1,365 @@
+.dropdown-container {
+  display: flex;
+  gap: 20px; /* Espaciado entre los dropdowns */
+  margin-top: 30px; /* Margen superior agregado */
+  margin-left: 1px; /* Mover hacia la izquierda */
+}
+
+.dropdown-caja {
+  display: flex;
+  width: 286px;
+  height: 35px; /* Reducir la altura del dropdown */
+  padding: 8px 10px 8px 15px; /* Ajustar el padding */
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--Neutral-5E5D5D, #5E5D5D);
+  background: var(--Neutral-FBFBFB, #FBFBFB);
+  font-family: var(--font-poppins); /* Asegurar que se aplique la fuente */
+  font-size: 14px; /* Reducir el tamaño del texto */
+  color: #111111;
+  justify-content: space-between;
+}
+
+.dropdown-select {
+  border: none;
+  background: transparent;
+  font-family: var(--font-poppins);
+  font-size: 14px; /* Reducir el tamaño del texto */
+  color: var(--Neutral-111111, #111);
+  width: 100%;
+  cursor: pointer;
+}
+.dropdown-select-disabled {
+  border: none;
+  background: transparent;
+  font-family: var(--font-poppins);
+  font-size: 14px; /* Reducir el tamaño del texto */
+  color: gray;
+  width: 100%;
+  cursor: not-allowed;
+}
+
+.dropdown-select:focus {
+  outline: none;
+}
+
+.dropdown-caja span {
+  color: var(--Neutral-111111, #111);
+  text-align: right;
+  font-family: var(--font-poppins); /* Asegurar que se aplique la fuente */
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 22.4px */
+}
+
+.icono-down {
+  width: 16px;
+  height: 16px;
+  margin-left: auto; /* Mover el icono al margen derecho */
+}
+
+.boton-retiro-container {
+  position: absolute;
+  top: 2px; /* Alinear con el botón de cobro */
+  right: 115px; /* Ajustar la posición */
+  width: 100px; /* Ancho del contenedor */
+  height: 40px; /* Altura del contenedor */
+}
+
+.boton-cobro-container {
+  position: absolute;
+  top: 2px; /* Alinear con el botón de retiro */
+  right: 5px; /* Mover un poco más a la izquierda */
+  width: 100px; /* Ancho del contenedor */
+  height: 40px; /* Altura del contenedor */
+}
+
+.boton-retiro {
+  width: 100%; /* Ajustar al ancho del contenedor */
+  height: 100%; /* Ajustar a la nueva altura del contenedor */
+  padding: 10px 15px 10px 10px; /* Padding especificado */
+  background: rgba(214, 158, 65, 0.20) !important; /* Fondo específico para el botón de retiro */
+  border-radius: 4px;
+  outline: 1px solid #D69E41;
+  outline-offset: -1px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.boton-retiro:hover {
+  background: rgba(214, 158, 65, 0.30); /* Cambiar el fondo al pasar el mouse */
+}
+
+.boton-retiro .icono-boton {
+  width: 24px;
+  height: 24px;
+}
+
+.boton-retiro .texto-boton {
+  color: #111111;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 22.4px;
+  word-wrap: break-word;
+}
+
+.boton-cobro {
+  width: 100%; /* Ajustar al ancho del contenedor */
+  height: 100%; /* Ajustar a la nueva altura del contenedor */
+  padding: 10px 15px 10px 10px; /* Padding especificado */
+  background: #D69E41; /* Fondo específico para el botón de cobro */
+  border-radius: 4px;
+  outline: 1px solid #D69E41;
+  outline-offset: -1px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.boton-cobro:hover {
+  background: rgba(214, 158, 65, 0.90); /* Cambiar el fondo al pasar el mouse */
+}
+
+.boton-cobro .icono-boton {
+  width: 24px;
+  height: 24px;
+}
+
+.boton-cobro .texto-boton {
+  color: #111111;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 22.4px;
+  word-wrap: break-word;
+}
+
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 28px; /* Subir los contenedores */
+  gap: 4px; /* Reducir el espaciado entre los dos contenedores */
+}
+
+.chart-container {
+  margin-left: 2px; /* Mover un poco a la derecha */
+  width: 48%; /* Reducir el ancho para que ambos contenedores entren */
+  height: 65vh; /* Aumentar la altura de los contenedores */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-container {
+  margin-right: 4px; /* Agregar margen derecho para acercarlo al contenedor izquierdo */
+  width: 48%; /* Reducir el ancho para que ambos contenedores entren */
+  height: 65vh; /* Aumentar la altura de los contenedores */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-layout, .payment-layout {
+  width: 100%;
+  height: 100%;
+  padding: 32px 20px;
+  background: #FDFDFD;
+  border-radius: 8px;
+  outline: 1px solid #CDCDCD;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chart-header {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.chart-title {
+  width: 231px;
+  color: #111111;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 28px;
+  word-wrap: break-word;
+}
+
+.chart-stats {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 32px;
+}
+
+.chart-amount {
+  color: #111111;
+  font-size: 32px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 48px;
+  word-wrap: break-word;
+}
+
+.chart-percentage {
+  color: #111111;
+  font-size: 32px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 48px;
+  word-wrap: break-word;
+}
+
+.chart-percentage-container {
+  padding: 3px;
+  background: rgba(0, 91, 75, 0.05);
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.chart-percentage-text {
+  color: #005B4B;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  line-height: 24px;
+  word-wrap: break-word;
+}
+
+.chart-body {
+  flex: 1;
+  width: 100%;
+  height: 100%; /* Ajustar al alto del contenedor */
+  position: relative;
+  background: #FDFDFD;
+  overflow: hidden;
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 100%; /* Ajustar al alto del contenedor */
+}
+
+.payment-header {
+  display: flex;
+  justify-content: space-between; /* Cambiar de flex-end a space-between */
+  align-items: center;
+}
+
+.payment-title {
+  color: #383838;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 28px;
+  margin-left: 0; /* Asegurar que esté alineado al margen izquierdo */
+}
+
+.close-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  outline: 1px solid #111111;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.close-box:hover {
+  background: rgba(0, 0, 0, 0.05); /* Fondo al pasar el mouse */
+}
+
+.close-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.close-text {
+  color: #111111;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 22.4px;
+}
+
+.payment-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.payment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #D4D4D4;
+}
+
+.payment-method {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.payment-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.payment-name {
+  color: black;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  line-height: 21px;
+}
+
+.payment-details {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.payment-amount {
+  color: #111111;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.payment-percentage {
+  padding: 3px;
+  background: rgba(0, 91, 75, 0.05);
+  border-radius: 4px;
+  color: #005B4B;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.error-message {
+  color: red;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+}
