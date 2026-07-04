@@ -192,20 +192,23 @@ Descripción
 - Sin conflictos
 - Código revisado
 
+Luego de crear el PR:
+
+- Agregar un comentario en Jira con la URL del PR
+- Transicionar la Task a **"En revisión"**
+
 ---
 
-## 10. Jira
+## 10. Jira (post-merge)
 
-Cuando el desarrollo finalice
+Cuando el PR sea aprobado y mergeado a develop
 
-Agregar un comentario indicando:
-
-- Funcionalidad implementada
-- Componentes modificados
-- Resultado de pruebas
-- Observaciones
-
-Actualizar el estado de la Task según el flujo del proyecto.
+- Agregar un comentario en Jira indicando:
+  - Funcionalidad implementada
+  - Componentes modificados
+  - Resultado de pruebas
+  - URL del PR mergeado
+- Transicionar la Task a **"Listo"**
 
 ---
 
