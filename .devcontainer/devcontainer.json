@@ -1,8 +1,8 @@
 {
-  "name": "DotNet 8 & MySQL 8 DevContainer",
+  "name": "ClinicHM DevContainer",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
-  "workspaceFolder": "/clinichm-api",
+  "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
       "settings": {
