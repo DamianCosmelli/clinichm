@@ -36,6 +36,10 @@ Principales módulos:
 | **Backend** | .NET 8 (ASP.NET Core, EF Core, MySQL) | [clinichm-api/README.md](clinichm-api/README.md) |
 | **Frontend** | React 19 + Vite 6 + TypeScript 5.7 + Tailwind CSS 4 | [clinichm-ui/README.md](clinichm-ui/README.md) |
 
+## Prerrequisitos
+
+- [GitHub CLI](https://cli.github.com/) (`gh`) — necesario para crear Pull Requests desde la terminal
+
 ## Desarrollo
 
 El proyecto incluye configuración para **DevContainer** (VS Code) que levanta automáticamente .NET SDK + MySQL 8.  
