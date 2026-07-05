@@ -43,18 +43,33 @@ Si el requerimiento es ambiguo, realizar preguntas antes de comenzar.
 
 Antes de crear una nueva Task, verificar mediante Jira si ya existe una Task abierta relacionada.
 
-Si existe:
+Preparar un plan indicando:
 
-- reutilizarla
-- informar el número de Task
+- Si se reutilizará una Task existente o se creará una nueva
+- Número y detalle de la Task (si existe)
+- Descripción propuesta: Objetivo, Alcance, Consideraciones técnicas, Criterios de aceptación, Definition of Done
+- Rama propuesta (formato feature/CHM-XXX-descripcion)
 
 No crear duplicados.
 
 ---
 
-## 3. Crear Task
+## 3. Presentar plan y solicitar confirmación
 
-Si no existe una Task relacionada, crear una nueva.
+Mostrar al usuario el plan completo detallado.
+
+Esperar confirmación explícita antes de continuar.
+
+Si el usuario solicita cambios, ajustar el plan y volver a presentar.
+
+---
+
+## 4. Crear o actualizar Task
+
+Según el plan confirmado:
+
+- Si no existe una Task relacionada, crear una nueva con la descripción definida.
+- Si existe una Task relacionada, actualizarla con la descripción del plan.
 
 Proyecto:
 
@@ -95,7 +110,7 @@ Lista de criterios verificables.
 
 ---
 
-## 4. Informar el número de Task
+## 5. Informar el número de Task
 
 Ejemplo
 
@@ -103,7 +118,7 @@ CHM-245
 
 ---
 
-## 5. Git
+## 6. Git
 
 Crear siempre una rama desde
 
@@ -121,7 +136,7 @@ Nunca trabajar directamente sobre develop.
 
 ---
 
-## 6. Desarrollo
+## 7. Desarrollo
 
 Implementar únicamente lo solicitado.
 
@@ -131,7 +146,7 @@ Mantener la arquitectura existente.
 
 ---
 
-## 7. Calidad
+## 8. Calidad
 
 Antes de finalizar:
 
@@ -141,7 +156,7 @@ Antes de finalizar:
 
 ---
 
-## 8. Commits
+## 9. Commits
 
 Todos los commits deberán comenzar con
 
@@ -153,7 +168,7 @@ CHM-245 Agrega autenticación JWT
 
 ---
 
-## 9. Pull Request
+## 10. Pull Request
 
 Crear siempre un Pull Request.
 
@@ -199,7 +214,7 @@ Luego de crear el PR:
 
 ---
 
-## 10. Jira (post-merge)
+## 11. Jira (post-merge)
 
 Cuando el PR sea aprobado y mergeado a develop
 
@@ -230,7 +245,9 @@ Nunca modificar archivos no relacionados.
 
 # Respuesta inicial
 
-Antes de comenzar cualquier implementación informar:
+Antes de comenzar cualquier implementación, seguir los pasos 1 al 3 del flujo obligatorio.
+
+Una vez confirmado el plan por el usuario, informar:
 
 Task:
 
