@@ -1,5 +1,5 @@
 const config = {
-    apiBaseUrl: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5122/',
+    apiBaseUrl: import.meta.env.VITE_API_BASE_URL || '/',
     apikey:import.meta.env.VITE_API_KEY || 'QnVydmVsYUFwaVNlY3VyaXR5IzEyMg=='
   };
   

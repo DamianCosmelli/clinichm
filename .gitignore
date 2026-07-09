@@ -1,0 +1,6 @@
+# Archivos de entorno
+.env
+nul
+
+# Base de datos
+.devcontainer/mysql-data

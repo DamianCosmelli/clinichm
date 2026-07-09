@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: 'Development'
+    volumes:
+      - ./..:/workspace
+    ports:
+      - "5173:5173"
+    command: sleep infinity
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0.40
+    command: --default-authentication-plugin=mysql_native_password --lower_case_table_names=1 --sql_mode=""
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_USER: 'dbuser'
+      MYSQL_PASSWORD: 'dbuser'
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./mysql-data:/var/lib/mysql

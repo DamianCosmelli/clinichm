@@ -31,142 +31,126 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="w-150 h-[calc(100vh-50px)] px-4 py-8 bg-[#FBFBFB] rounded-lg outline-1 outline-[#7A7979] outline-offset-[-1px] flex flex-col justify-center items-center gap-8">
-      <div className="flex flex-col justify-start items-center gap-6">
-        <div className="w-15 h-[61px] p-2.5 bg-black rounded-full flex justify-center items-center">
-          <img
-            className="w-[39.68px] h-[41px]"
-            src={logo}
-            alt="Logo"
-          />
-        </div>
-        <div className="w-[418px] px-2 flex flex-col justify-start items-center gap-4">
-          <div className="text-[#111111] text-2xl font-poppins font-medium leading-[33.6px] break-words">
-            Iniciar sesión
-          </div>
-        </div>
-        {/* Usuario */}
-        <div className="w-full flex flex-col gap-2">
-          <div className="flex items-center gap-1">
-            <div className="label-general ">
-              Usuario
-            </div>
-          </div>
-          <div className="w-[418px] flex flex-col gap-1.5">
-            <input
-              className="input-style"
-              placeholder="Ingresar usuario"
-              style={{ width: 385 }} // ancho reducido solo para usuario
-              value={usuario}
-              //onChange={e => setUsuario(e.target.value)}
-              spellCheck={false}
-              autoComplete="username"
-              onInput={(e) => {
-                const input = e.target as HTMLInputElement;
-                input.value = input.value.replace(/[^a-zA-Z0-9]/g, ""); // Solo minúsculas y números
-                setUsuario(input.value)
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && usuario.trim() && password.trim()) {
-                  handleLogin();
-                }
-              }}
-            />
-          </div>
-        </div>
-        {/* Contraseña */}
-        <div className="w-[418px] flex flex-col gap-2">
-          <div className="flex items-center gap-1">
-            <div className="label-general">
-              Contraseña
-            </div>
-            <span className="label-asterisco">*</span>
-          </div>
-          <div className="flex flex-col gap-1.5">
-            <div className="flex items-center relative">
-              <input
-                //className="input-style pr-10"
-                className={`${password.length > 0 && password.length < 6 ? 'input-style-red' : 'input-style'}`}
-                type={showPassword ? "text" : "password"}
-                placeholder="Ingresar contraseña"
-                value={password}
-                //onChange={e => setPassword(e.target.value)}
-                spellCheck={false}
-                autoComplete="current-password"
-                maxLength={12}
-                onInput={(e) => {
-                const input = e.target as HTMLInputElement;
-                input.value = input.value.replace(/[^a-zA-Z0-9!@#$%]/g, ""); // Permite letras, números y caracteres especiales comunes
-                setPassword(input.value)
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && usuario.trim() && password.trim()) {
-                  handleLogin();
-                }
-              }}
-              />
-              <button
-                type="button"
-                className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                onClick={() => setShowPassword(v => !v)}
-                tabIndex={-1}
-                aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
-              >
-                {showPassword ? (
-                  <EyeIcon className="w-5 h-5" />
-                ) : (
-                  <EyeOffIcon className="w-5 h-5" />
-                )}
-              </button>
-            </div>
-            {failLogin ?
-            (<div className="ml-4 flex items-center gap-1">
-              <img
-                src={iconoError}
-                alt="info"
-                className="mr-1 w-[14px] h-[14px]"
-              />
-              <span className="text-red-800 text-sm font-poppins font-normal leading-[19.6px]">
-                Usuario o contraseña incorrectas.
-              </span> 
-            </div>
-              ): (
-            <div className="ml-4 flex items-center gap-1">
-              <img
-                src={iconoInfo}
-                alt="info"
-                className="mr-1 w-[14px] h-[14px]"
-              />
-              <span className="text-[#5E5D5D] text-sm font-poppins font-normal leading-[19.6px]" title='Letras (mayúsculas y minúsculas), números y caracteres especiales !@#$%'>
-                Debe tener entre 6 y 12 caracteres.
-              </span>
-            </div>)}         
-          </div>
-        </div>
-        {/* Olvidaste la contraseña */}
-        {/*<div className="flex items-center gap-2">
-          <span className="text-[#111111] text-sm font-poppins font-semibold leading-[19.6px]">
-            ¿Olvidaste la contraseña?
-          </span>
-          <button className="flex items-center gap-1" type="button">
+    <div className="w-[680px] h-[420px] px-4 py-8 bg-[#FBFBFB] rounded-lg outline-1 outline-[#7A7979] outline-offset-[-1px] flex flex-col gap-4">
+      <div className="text-center text-[#111111] text-2xl font-poppins font-medium leading-[33.6px] break-words pt-4">
+        Iniciar sesión
+      </div>
+
+      <div className="flex flex-row flex-1 items-center justify-center gap-8 pb-8">
+        <div className="flex-1 flex justify-center items-center">
+          <div className="w-44 h-44 bg-black rounded-full flex justify-center items-center">
             <img
-              src={icon_asteriscos}
-              alt="icono asteriscos"
-              className="w-[24px] h-[24px]"
+              className="w-30 h-auto"
+              src={logo}
+              alt="Logo"
             />
-            <span className="text-[#85673B] text-sm font-poppins font-semibold leading-[19.6px]">
-              Restablecer
-            </span>
-          </button>
-        </div>*/}
-        {/* Botón Continuar */}
-        <div className="w-[418px] flex justify-center items-center mt-6">
-          <BotonConIcono
-            label="Continuar"
-            type="button"
-            className="ml-2 flex-1 w-100 justify-center"
-            onClick={handleLogin}
-          />
+          </div>
+        </div>
+
+        <div className="flex-1 flex flex-col justify-center items-center gap-6">
+          <div className="w-full flex flex-col gap-2">
+            <div className="flex items-center gap-1">
+              <div className="label-general">
+                Usuario
+              </div>
+            </div>
+            <div className="w-[418px] flex flex-col gap-1.5">
+              <input
+                className="input-style"
+                placeholder="Ingresar usuario"
+                style={{ width: 385 }}
+                value={usuario}
+                spellCheck={false}
+                autoComplete="username"
+                onInput={(e) => {
+                  const input = e.target as HTMLInputElement;
+                  input.value = input.value.replace(/[^a-zA-Z0-9]/g, "");
+                  setUsuario(input.value)
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && usuario.trim() && password.trim()) {
+                    handleLogin();
+                  }
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="w-[418px] flex flex-col gap-2">
+            <div className="flex items-center gap-1">
+              <div className="label-general">
+                Contraseña
+              </div>
+              <span className="label-asterisco">*</span>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center relative">
+                <input
+                  className={`${password.length > 0 && password.length < 6 ? 'input-style-red' : 'input-style'}`}
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Ingresar contraseña"
+                  value={password}
+                  spellCheck={false}
+                  autoComplete="current-password"
+                  maxLength={12}
+                  onInput={(e) => {
+                    const input = e.target as HTMLInputElement;
+                    input.value = input.value.replace(/[^a-zA-Z0-9!@#$%]/g, "");
+                    setPassword(input.value)
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && usuario.trim() && password.trim()) {
+                      handleLogin();
+                    }
+                  }}
+                />
+                <button
+                  type="button"
+                  className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  onClick={() => setShowPassword(v => !v)}
+                  tabIndex={-1}
+                  aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                >
+                  {showPassword ? (
+                    <EyeIcon className="w-5 h-5" />
+                  ) : (
+                    <EyeOffIcon className="w-5 h-5" />
+                  )}
+                </button>
+              </div>
+              {failLogin ?
+              (<div className="ml-4 flex items-center gap-1">
+                <img
+                  src={iconoError}
+                  alt="info"
+                  className="mr-1 w-[14px] h-[14px]"
+                />
+                <span className="text-red-800 text-sm font-poppins font-normal leading-[19.6px]">
+                  Usuario o contraseña incorrectas.
+                </span>
+              </div>
+                ) : (
+              <div className="ml-4 flex items-center gap-1">
+                <img
+                  src={iconoInfo}
+                  alt="info"
+                  className="mr-1 w-[14px] h-[14px]"
+                />
+                <span className="text-[#5E5D5D] text-sm font-poppins font-normal leading-[19.6px]" title='Letras (mayúsculas y minúsculas), números y caracteres especiales !@#$%'>
+                  Debe tener entre 6 y 12 caracteres.
+                </span>
+              </div>)}
+            </div>
+          </div>
+
+          <div className="w-[418px] flex justify-center items-center mt-6">
+            <BotonConIcono
+              label="Continuar"
+              type="button"
+              className="ml-2 flex-1 w-100 justify-center"
+              onClick={handleLogin}
+            />
+          </div>
         </div>
       </div>
     </div>
