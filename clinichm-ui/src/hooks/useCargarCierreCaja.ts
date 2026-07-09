@@ -61,7 +61,7 @@ const useCargarCierreCaja = (idCierreCaja: number = 0): CierreCajaState => {
         const gastosARS = movimientos
           .filter(
             (mov: MovimientoCaja) =>
-              mov.tipoMovimiento === 'Retiro' && mov.idCierreCaja === idCierreCaja
+              (mov.tipoMovimiento === 'Retiro' || mov.tipoMovimiento === 'pago comision') && mov.idCierreCaja === idCierreCaja
           )
           .reduce((acc: number, mov: MovimientoCaja) => acc + mov.monto, 0);
 
@@ -70,7 +70,8 @@ const useCargarCierreCaja = (idCierreCaja: number = 0): CierreCajaState => {
             (mov: MovimientoCaja) =>
               mov.idCierreCaja === idCierreCaja &&
               ((mov.tipoMovimiento === 'Cobro' && medioPagoMap.get(mov.idMedioPago) === 'Efectivo Peso') ||
-                mov.tipoMovimiento === 'Retiro')
+                mov.tipoMovimiento === 'Retiro' ||
+                (mov.tipoMovimiento === 'pago comision' && medioPagoMap.get(mov.idMedioPago) === 'Efectivo Peso'))
           )
           .reduce(
             (acc: number, mov: MovimientoCaja) =>
