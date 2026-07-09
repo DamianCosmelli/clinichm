@@ -10,9 +10,6 @@ import BotonConIcono from '../components/common/BotonConIcono'; // Importar el c
 import iconoDescargar from '../assets/icono-descarga.svg'; // Importar el ícono de descarga
 import { generarInformeCierreCaja, procesarCierreDiario, /*obtenerCierreCaja,*/ ObtenerCierreCajaInfo } from '../services/cierreCajaService'; // Importar el método
 import { ListaSucursales } from '../services/sucursalesService'; // Importar el servicio para obtener sucursales
-import PagosComisionesCierreCard from '../components/CierreCaja/PagosComisionesCierreCard'; // Importar el nuevo componente
-//import { obtenerPagoDeComisionesPorCierreCaja } from '../services/pagoDeComisionesService'; // Importar el servicio
-//import { PagoDeComisiones } from '../models/PagoDeComisiones'; // Importar el modelo PagoDeComisiones
 //import { CierreCaja } from '../models/CierreCaja'; // Importar el modelo CierreCaja
 
 import PopupCierreCaja from '../components/CierreCaja/PopupCierreCaja'; // Importar el nuevo componente
@@ -20,7 +17,6 @@ import iconCheck from '../assets/icon-check.svg'; // Importar el ícono de éxit
 import iconChevronRightRounded from "..//assets/icon-chevron-right-rounded.svg";
 import iconPlusLine from "../assets/icon-plus-line.svg";
 import { CierreCajaInfo } from '../models/CierreCajaInfo';
-import ProductosCierreCard from '../components/CierreCaja/ProductosCierreCard';
 import MovimientosCierreCard from '../components/CierreCaja/MovimientosCierreCard';
 
 const CierreDeCaja: React.FC = () => {
@@ -188,8 +184,6 @@ const CierreDeCaja: React.FC = () => {
           <IngresosPorMedioCard ingresosPorMedio={ingresosPorMedio} />
           {idCierreCaja && cierreCaja ? (
             <>  
-              <PagosComisionesCierreCard pagosComisiones={cierreCaja!.comisiones} />
-              <ProductosCierreCard productosConsumidos={cierreCaja!.productos}/>
               <MovimientosCierreCard movimientosCierre={cierreCaja!.movimientos} />
             </>
           ):''}

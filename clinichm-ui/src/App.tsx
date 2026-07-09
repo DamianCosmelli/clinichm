@@ -31,6 +31,7 @@ import EditarUsuario from './pages/EditarUsuario'; // Importar la página Editar
 import NuevaAtencion from './pages/NuevaAtencion'; // Importar la nueva página
  // Importar la página Ajustes
 import CierreDeCaja from './pages/CierreDeCaja';
+import Comisiones from './pages/Comisiones';
 import PerfilMedico from './pages/Ajustes/Medicos/PerfilMedico'; // Importar la página PerfilMedico
 import CrearMedico from './pages/Ajustes/Medicos/CrearMedico'; // Importar la página CrearMedico
 import EditarMedico from './pages/Ajustes/Medicos/EditarMedico'; // Importar la página EditarMedico
@@ -121,6 +122,7 @@ const App: React.FC = () => {
             <Route path="/cobro" element={<Cobro />} />
             <Route path="/retiro" element={<Retiro />} />
             <Route path="/cierre-de-caja" element={<CierreDeCaja />} />
+            <Route path="/comisiones" element={<Comisiones />} />
           </Route>
           
           {/* Rutas SOLO RECEPCION */}
