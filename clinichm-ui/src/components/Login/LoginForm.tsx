@@ -31,7 +31,7 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="w-[880px] h-[520px] px-4 py-8 bg-[#FBFBFB] rounded-lg outline-1 outline-[#7A7979] outline-offset-[-1px] flex flex-col gap-4">
+    <div className="w-[680px] h-[420px] px-4 py-8 bg-[#FBFBFB] rounded-lg outline-1 outline-[#7A7979] outline-offset-[-1px] flex flex-col gap-4">
       <div className="text-center text-[#111111] text-2xl font-poppins font-medium leading-[33.6px] break-words pt-4">
         Iniciar sesión
       </div>
@@ -40,7 +40,7 @@ const LoginForm: React.FC = () => {
         <div className="flex-1 flex justify-center items-center">
           <div className="w-44 h-44 bg-black rounded-full flex justify-center items-center">
             <img
-              className="w-36 h-auto"
+              className="w-30 h-auto"
               src={logo}
               alt="Logo"
             />
