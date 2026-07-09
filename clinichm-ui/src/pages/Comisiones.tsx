@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../utils/authContext';
-import { ROLES } from '../utils/roles';
 import TableListados from '../components/common/TableListados';
 import { fetchComisiones, pagarComision } from '../services/comisionesService';
 import { ListaMedicos } from '../services/medicosService';
@@ -63,8 +62,8 @@ const Comisiones: React.FC = () => {
       monto: comision.monto,
       tipoMovimiento: 'pago comision',
       fechaHora: new Date().toISOString(),
-      idSucursal: user?.role === ROLES.ADMIN ? 0 : (user?.usuarioData?.sucursalID || 0),
-      idCierreCaja: comision.cierreDeCajaId,
+      idSucursal: user!.usuarioData.sucursalID,
+      idCierreCaja: 0,
       cotizacionDolar: 0,
       notas: `Pago de comisión - ${medicoMap.get(comision.medicoId) || 'Médico'}`,
     };

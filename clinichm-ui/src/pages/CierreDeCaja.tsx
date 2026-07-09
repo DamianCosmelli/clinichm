@@ -18,6 +18,7 @@ import iconChevronRightRounded from "..//assets/icon-chevron-right-rounded.svg";
 import iconPlusLine from "../assets/icon-plus-line.svg";
 import { CierreCajaInfo } from '../models/CierreCajaInfo';
 import MovimientosCierreCard from '../components/CierreCaja/MovimientosCierreCard';
+import PagosComisionesCierreCard from '../components/CierreCaja/PagosComisionesCierreCard';
 
 const CierreDeCaja: React.FC = () => {
   const location = useLocation();
@@ -184,6 +185,12 @@ const CierreDeCaja: React.FC = () => {
           <IngresosPorMedioCard ingresosPorMedio={ingresosPorMedio} />
           {idCierreCaja && cierreCaja ? (
             <>  
+              <PagosComisionesCierreCard
+                pagosComisiones={cierreCaja!.comisiones}
+                movimientosPago={cierreCaja!.movimientos.filter(
+                  m => m.tipoMovimiento?.toLowerCase() === 'pago comision'
+                )}
+              />
               <MovimientosCierreCard movimientosCierre={cierreCaja!.movimientos} />
             </>
           ):''}
