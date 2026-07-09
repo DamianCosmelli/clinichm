@@ -14,6 +14,9 @@ namespace clinichm_api.Services
         private readonly IRepository<CobroTratamientos> _cobroTratamientosRepository;
         private readonly IRepository<Vouchers> _vouchersRepository;
         private readonly IRepository<CobroNotas> _cobroNotasRepository;
+        private readonly IRepository<PagoDeComisiones> _pagoDeComisionesRepository;
+        private readonly IRepository<Tratamientos> _tratamientosRepository;
+        private readonly IRepository<Medicos> _medicosRepository;
         private readonly IStockRepository _stockRepository;
 
         public CobrosServices(
@@ -22,6 +25,9 @@ namespace clinichm_api.Services
             IRepository<CobroTratamientos> cobroTratamientosRepository,
             IRepository<Vouchers> vouchersRepository,
             IRepository<CobroNotas> cobroNotasRepository,
+            IRepository<PagoDeComisiones> pagoDeComisionesRepository,
+            IRepository<Tratamientos> tratamientosRepository,
+            IRepository<Medicos> medicosRepository,
             IStockRepository stockRepository)
         {
             _cobroProductosRepository = cobroProductosRepository;
@@ -29,6 +35,9 @@ namespace clinichm_api.Services
             _movimientoRepository = movimientoRepository;
             _vouchersRepository = vouchersRepository;
             _cobroNotasRepository = cobroNotasRepository;
+            _pagoDeComisionesRepository = pagoDeComisionesRepository;
+            _tratamientosRepository = tratamientosRepository;
+            _medicosRepository = medicosRepository;
             _stockRepository = stockRepository;
         }
 
@@ -138,6 +147,32 @@ namespace clinichm_api.Services
                         MedicoId = cobro.IdMedico
                     };
                     await _cobroTratamientosRepository.AddAsync(tratamientoPago);
+                }
+
+                /***** Crea PagoDeComisiones para tratamientos con comision **********/
+                var tratamientos = (await _tratamientosRepository.GetAllAsync()).ToList();
+                var medicos = (await _medicosRepository.GetAllAsync()).ToList();
+
+                foreach (var tratamientoDto in cobro.Tratamientos!)
+                {
+                    if (tratamientoDto.conComision)
+                    {
+                        var tratamiento = tratamientos.FirstOrDefault(t => t.Id == tratamientoDto.TratamientoId);
+                        var medico = medicos.FirstOrDefault(m => m.Id == cobro.IdMedico);
+                        if (tratamiento != null && medico != null)
+                        {
+                            var comision = medico.RoleId == 1 ? tratamiento.Comision : tratamiento.ComisionEncargado;
+                            var pagoComision = new PagoDeComisiones
+                            {
+                                MedicoId = cobro.IdMedico,
+                                FechaDePago = DateTime.Now,
+                                MetodoDePago = "Efectivo Peso",
+                                Monto = comision,
+                                CierreDeCajaId = 0
+                            };
+                            await _pagoDeComisionesRepository.AddAsync(pagoComision);
+                        }
+                    }
                 }
 
                 /***** Procesa los Productos **********/

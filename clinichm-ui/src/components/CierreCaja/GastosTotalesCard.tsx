@@ -4,15 +4,19 @@ import negativo from "../../assets/negativo.svg";
 
 interface Props {
   gastosARS: number;
+  comisionesARS?: number;
 }
 
-const GastosTotalesCard: React.FC<Props> = ({ gastosARS }) => {
+const formatearMonto = (monto: number) =>
+  monto.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
+const GastosTotalesCard: React.FC<Props> = ({ gastosARS, comisionesARS }) => {
   const getMontoColor = (monto: number) => (monto >= 0 ? '#005B4B' : '#A40202');
   const getMontoIcon = (monto: number) =>
     monto >= 0 ? positivo : negativo;
 
   return (
-    <div className="w-[267px] h-[200px] p-4 bg-[#FBFBFB] rounded-lg border-2 border-[#D4D4D4] flex flex-col gap-6">
+    <div className="w-[267px] h-[200px] p-4 bg-[#FBFBFB] rounded-lg border-2 border-[#D4D4D4] flex flex-col gap-4">
       <div className="text-[#111111] text-lg font-poppins font-semibold leading-7">
         Gastos totales
       </div>
@@ -23,9 +27,16 @@ const GastosTotalesCard: React.FC<Props> = ({ gastosARS }) => {
             className="text-xl font-poppins font-medium leading-[33.6px]"
             style={{ color: getMontoColor(-gastosARS) }}
           >
-            ARS {gastosARS.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+            ARS {formatearMonto(gastosARS)}
           </span>
         </div>
+        {comisionesARS !== undefined && (
+          <div className="flex items-center gap-2 pl-6">
+            <span className="text-sm font-poppins text-gray-500">
+              Comisiones: ARS {formatearMonto(comisionesARS)}
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );
