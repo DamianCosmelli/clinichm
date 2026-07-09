@@ -6,6 +6,7 @@ import GastosTotalesCard from '../components/CierreCaja/GastosTotalesCard';
 import TotalEfectivoCard from '../components/CierreCaja/TotalEfectivoCard';
 import IngresosPorMedioCard from '../components/CierreCaja/IngresosPorMedioCard';
 import GastosEmpleadosCard from '../components/CierreCaja/GastosEmpleadosCard';
+import TotalComisionesCard from '../components/CierreCaja/TotalComisionesCard';
 import BotonConIcono from '../components/common/BotonConIcono'; // Importar el componente BotonConIcono
 import iconoDescargar from '../assets/icono-descarga.svg'; // Importar el ícono de descarga
 import { generarInformeCierreCaja, procesarCierreDiario, /*obtenerCierreCaja,*/ ObtenerCierreCajaInfo } from '../services/cierreCajaService'; // Importar el método
@@ -182,7 +183,13 @@ const CierreDeCaja: React.FC = () => {
                   .filter(m => m.tipoMovimiento?.toLowerCase() === 'pago comision')
                   .reduce((sum, m) => sum + m.monto, 0)
               ) : gastosARS}
-              comisionesARS={cierreCaja ? cierreCaja.comisiones.reduce((sum, c) => sum + c.monto, 0) : undefined}
+            />
+            <TotalComisionesCard
+              comisionesARS={
+                cierreCaja
+                  ? cierreCaja.comisiones.reduce((sum, c) => sum + c.monto, 0)
+                  : 0
+              }
             />
             <TotalEfectivoCard
               totalEfectivo={cierreCaja ? cierreCaja.resumen.totalEfectivo : totalEfectivo}
