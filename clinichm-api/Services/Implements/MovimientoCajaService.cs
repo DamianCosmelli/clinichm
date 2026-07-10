@@ -82,7 +82,7 @@ namespace clinichm_api.Services.Implements
                     DescripcionRetiro = movimientoCaja.DescripcionRetiro,
                     MovRelation = movimientoCaja.MovRelation,
                     Notas = _repositoryCobroNotas.GetAllAsync().Result
-                            .FirstOrDefault(n => n.MovId == movimientoCaja.MovRelation)!.Notas
+                            .FirstOrDefault(n => n.MovId == movimientoCaja.MovRelation)?.Notas
 
                 };
             }
