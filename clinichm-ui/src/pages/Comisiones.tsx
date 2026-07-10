@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../utils/authContext';
 import TableListados from '../components/common/TableListados';
-import { fetchComisiones, pagarComision } from '../services/comisionesService';
+import { fetchComisiones, pagarComision, liquidarComision } from '../services/comisionesService';
 import { ListaMedicos } from '../services/medicosService';
 import { fetchCierresCaja, ObtenerCierreCajaInfo } from '../services/cierreCajaService';
 import { PagoDeComisiones } from '../models/PagoDeComisiones';
@@ -70,6 +70,8 @@ const Comisiones: React.FC = () => {
 
     try {
       await pagarComision(movimiento);
+      await liquidarComision(comision);
+      setComisiones((prev) => prev.filter((c) => c.id !== comision.id));
       setMensajeExito(true);
       setTimeout(() => setMensajeExito(false), 3000);
     } catch (error) {
@@ -77,10 +79,11 @@ const Comisiones: React.FC = () => {
     }
   };
 
-  const productosHeaders = ['Nombre y Apellido', 'Producto', 'Cantidad', 'Fecha'];
+  const productosHeaders = ['Nombre y Apellido', 'Paciente', 'Producto', 'Cantidad', 'Fecha'];
 
   const productosRows = productos.map((p) => ({
     'Nombre y Apellido': p.medico ?? '',
+    Paciente: p.paciente ?? '',
     Producto: p.producto ?? '',
     Cantidad: p.cantProd ?? '',
     Fecha: p.fecha ? new Date(p.fecha).toLocaleDateString('es-ES') : '',
@@ -110,7 +113,7 @@ const Comisiones: React.FC = () => {
           <div className="w-full overflow-y-auto">
             <TableListados
               headers={['Nombre y Apellido', 'Monto', 'Modo de Pago', 'Fecha', 'Acción']}
-              rows={comisiones.map((comision) => ({
+              rows={comisiones.filter((c) => c.cierreDeCajaId === 0).map((comision) => ({
                 'Nombre y Apellido': medicoMap.get(comision.medicoId) ?? `Médico #${comision.medicoId}`,
                 Monto: `$ ${comision.monto.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`,
                 'Modo de Pago': comision.metodoDePago,

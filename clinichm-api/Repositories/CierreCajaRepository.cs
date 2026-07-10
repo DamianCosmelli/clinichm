@@ -96,11 +96,12 @@ namespace clinichm_api.Repositories
 
             /*** Sumariza los totales por medios de pago ***/
 
-            //suma todo los movimientos de efectivo excluyendo tipo retiro y vuelto
+            //suma todo los movimientos de efectivo excluyendo tipo retiro, vuelto y pago comision
             cierreCaja.MontoEfectivo = movimientosCaja
                 .Where(m => mediosDePago.Any(mp => mp.MedioPago == MedioPagoMap[MedioPagoEnum.EfectivoPeso] && mp.Id == m.IdMedioPago)
                 && m.TipoMovimiento != "Retiro"
-                && m.TipoMovimiento != "Vuelto")
+                && m.TipoMovimiento != "Vuelto"
+                && m.TipoMovimiento != "pago comision")
                 .Sum(m => m.Monto);
 
             cierreCaja.MontoTarjetaCredito = movimientosCaja
@@ -159,7 +160,9 @@ namespace clinichm_api.Repositories
                     var medico = medicos.FirstOrDefault(m => m.Id == movimiento.MedicoId);
                     if (tratamiento != null && medico != null)
                     {
-                        decimal comision = medico.RoleId == 1 ? tratamiento.Comision : tratamiento.ComisionEncargado;
+                        decimal comision = medico.RoleId == 1 ? tratamiento.Comision
+                                            : medico.RoleId == 3 ? tratamiento.ComisionEspecial
+                                            : tratamiento.ComisionEncargado;
                         cierreCaja.TotalEfectivo -= comision;
                     }
                 }
@@ -343,6 +346,10 @@ namespace clinichm_api.Repositories
                     Fecha = _context.MovimientosCaja.FirstOrDefault(mov => mov.Id == p.MovId)!.FechaHora,
                     Medico = _context.Medicos.FirstOrDefault(med => med.Id == p.MedicoId)!.Nombre + " " +
                              _context.Medicos.FirstOrDefault(med => med.Id == p.MedicoId)!.Apellido,
+                    Paciente = _context.Pacientes.FirstOrDefault(pac => pac.Id ==
+                                   _context.MovimientosCaja.FirstOrDefault(mov => mov.Id == p.MovId)!.IdPaciente)!.Nombre + " " +
+                               _context.Pacientes.FirstOrDefault(pac => pac.Id ==
+                                   _context.MovimientosCaja.FirstOrDefault(mov => mov.Id == p.MovId)!.IdPaciente)!.Apellido,
                     Producto = _context.Producto.FirstOrDefault(prod => prod.Id == p.ProductoId)!.Nombre,
                     CantProd = p.Cantidad
 

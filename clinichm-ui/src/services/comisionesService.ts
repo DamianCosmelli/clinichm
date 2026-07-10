@@ -44,3 +44,30 @@ export const pagarComision = async (movimientoData: MovimientoCaja): Promise<Mov
     throw error;
   }
 };
+
+export const liquidarComision = async (comision: PagoDeComisiones): Promise<void> => {
+  try {
+    const response = await apiService(`${ENDPOINTS.PAGO_COMISIONES}/${comision.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        medicoId: comision.medicoId,
+        fechaDePago: comision.fechaDePago,
+        metodoDePago: comision.metodoDePago,
+        monto: comision.monto,
+        cierreDeCajaId: -1,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error del servidor:', errorData);
+      throw new Error('Error al liquidar la comisión');
+    }
+  } catch (error) {
+    console.error('Error al liquidar comisión:', error);
+    throw error;
+  }
+};

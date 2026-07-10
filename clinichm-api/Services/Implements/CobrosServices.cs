@@ -161,7 +161,9 @@ namespace clinichm_api.Services
                         var medico = medicos.FirstOrDefault(m => m.Id == cobro.IdMedico);
                         if (tratamiento != null && medico != null)
                         {
-                            var comision = medico.RoleId == 1 ? tratamiento.Comision : tratamiento.ComisionEncargado;
+                            var comision = medico.RoleId == 1 ? tratamiento.Comision
+                                            : medico.RoleId == 3 ? tratamiento.ComisionEspecial
+                                            : tratamiento.ComisionEncargado;
                             var pagoComision = new PagoDeComisiones
                             {
                                 MedicoId = cobro.IdMedico,
