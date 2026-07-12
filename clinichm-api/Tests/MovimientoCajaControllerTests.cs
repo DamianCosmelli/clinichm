@@ -47,7 +47,10 @@ public class MovimientoCajaControllerTests
             new Repository<CobroTratamientos>(context),
             new Repository<Vouchers> (context),
             new Repository<CobroNotas>(context),
-            new StockRepository(context) // Asegúrate de incluir el repositorio de CobroNotas
+            new Repository<PagoDeComisiones>(context),
+            new Repository<Tratamientos>(context),
+            new Repository<Medicos>(context),
+            new StockRepository(context)
         );
         var controller = new MovimientoCajaController(service, cobroService);
         // Setup test
@@ -76,6 +79,9 @@ public class MovimientoCajaControllerTests
             new Repository<CobroTratamientos>(context),
             new Repository<Vouchers> (context),
             new Repository<CobroNotas>(context),
+            new Repository<PagoDeComisiones>(context),
+            new Repository<Tratamientos>(context),
+            new Repository<Medicos>(context),
             new StockRepository(context)
         );
         var controller = new MovimientoCajaController(service, cobroService);
@@ -114,7 +120,10 @@ public class MovimientoCajaControllerTests
             new Repository<CobroTratamientos>(context),
             new Repository<Vouchers> (context),
             new Repository<CobroNotas>(context),
-             new StockRepository(context)
+            new Repository<PagoDeComisiones>(context),
+            new Repository<Tratamientos>(context),
+            new Repository<Medicos>(context),
+            new StockRepository(context)
         );
         var controller = new MovimientoCajaController(service, cobroService);
          // Asegura un contexto limpio
@@ -151,7 +160,10 @@ public class MovimientoCajaControllerTests
             new Repository<CobroTratamientos>(context),
             new Repository<Vouchers> (context),
             new Repository<CobroNotas>(context),
-             new StockRepository(context)
+            new Repository<PagoDeComisiones>(context),
+            new Repository<Tratamientos>(context),
+            new Repository<Medicos>(context),
+            new StockRepository(context)
         );
         var controller = new MovimientoCajaController(service, cobroService);
         // Asegura un contexto limpio
@@ -185,6 +197,9 @@ public class MovimientoCajaControllerTests
             new Repository<CobroTratamientos>(context),
             new Repository<Vouchers> (context),
             new Repository<CobroNotas>(context),
+            new Repository<PagoDeComisiones>(context),
+            new Repository<Tratamientos>(context),
+            new Repository<Medicos>(context),
             new StockRepository(context)
         );
         var controller = new MovimientoCajaController(service, cobroService);

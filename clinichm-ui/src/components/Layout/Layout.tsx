@@ -180,6 +180,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   menuName={
                     <div className="flex items-center gap-2">
                       <div className="iconSize flex items-center justify-center">
+                        <img src={cajaIcon} alt="Comisiones" className="iconSize" />
+                      </div>
+                      <span className={`${isCollapsed ? 'hidden' : 'block'} text-principal text-sm`}>Comisiones</span>
+                    </div>
+                  } 
+                  route='comisiones'
+                  hide={!canAccess([ROLES.ADMIN, ROLES.CAJA])}
+                />
+              </li>
+              <li>
+                <MenuItem 
+                  menuName={
+                    <div className="flex items-center gap-2">
+                      <div className="iconSize flex items-center justify-center">
                         <img src={stockIcon} alt="Stock" className="iconSize" />
                       </div>
                       <span className={`${isCollapsed ? 'hidden' : 'block'} text-principal text-sm`}>Stock</span>
