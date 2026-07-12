@@ -34,7 +34,8 @@ namespace clinichm_api.Tests
 
             // Arrange
             string modelo = "Medicos";
-            var filePath = Path.Combine("/Clinichm-api","Mocks", "Medicos_TestPlantilla.xlsx");
+            var projectDir = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", ".."));
+            var filePath = Path.Combine(projectDir, "Mocks", "Medicos_TestPlantilla.xlsx");
             using var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
             var file = new FormFile(stream, 0, stream.Length, "file", Path.GetFileName(filePath));
 

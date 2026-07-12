@@ -39,6 +39,7 @@ export interface Movimiento {
 export interface Producto {
   fecha: string;
   medico: string;
+  paciente?: string;
   producto: string;
   cantProd: number;
 }

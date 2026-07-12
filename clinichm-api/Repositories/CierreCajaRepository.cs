@@ -34,8 +34,6 @@ namespace clinichm_api.Repositories
             { MedioPagoEnum.SinCargo, "Sin Cargo" }
         };
 
-        private static List<PagoDeComisiones> PagosComisionesList = new List<PagoDeComisiones>();
-
         public CierreCajaRepository(AppDbContext context) : base(context)
         {
             _context = context;
@@ -98,11 +96,12 @@ namespace clinichm_api.Repositories
 
             /*** Sumariza los totales por medios de pago ***/
 
-            //suma todo los movimientos de efectivo excluyendo tipo retiro y vuelto
+            //suma todo los movimientos de efectivo excluyendo tipo retiro, vuelto y pago comision
             cierreCaja.MontoEfectivo = movimientosCaja
                 .Where(m => mediosDePago.Any(mp => mp.MedioPago == MedioPagoMap[MedioPagoEnum.EfectivoPeso] && mp.Id == m.IdMedioPago)
                 && m.TipoMovimiento != "Retiro"
-                && m.TipoMovimiento != "Vuelto")
+                && m.TipoMovimiento != "Vuelto"
+                && m.TipoMovimiento != "pago comision")
                 .Sum(m => m.Monto);
 
             cierreCaja.MontoTarjetaCredito = movimientosCaja
@@ -153,52 +152,38 @@ namespace clinichm_api.Repositories
 
             /**** Calcular comisiones por tratamientos realizados [INICIO] ****/
 
-            PagosComisionesList.Clear(); // Limpiar lista de pagos de comisiones en memoria
-
             foreach (var movimiento in tratamientoCobro)
             {
-                if (movimiento.conComision) //solo procesa los tratamientos con comision
+                if (movimiento.conComision)
                 {
                     var tratamiento = tratamientos.FirstOrDefault(t => t.Id == movimiento.TratamientoId);
                     var medico = medicos.FirstOrDefault(m => m.Id == movimiento.MedicoId);
                     if (tratamiento != null && medico != null)
                     {
-                        decimal comision = medico.RoleId == 1 ? tratamiento.Comision : tratamiento.ComisionEncargado;
+                        decimal comision = medico.RoleId == 1 ? tratamiento.Comision
+                                            : medico.RoleId == 3 ? tratamiento.ComisionEspecial
+                                            : tratamiento.ComisionEncargado;
                         cierreCaja.TotalEfectivo -= comision;
-                        var pagoComision = new PagoDeComisiones
-                        {
-                            MedicoId = movimiento.MedicoId,
-                            FechaDePago = DateTime.Now,
-                            MetodoDePago = MedioPagoMap[MedioPagoEnum.EfectivoPeso],
-                            Monto = comision,
-                            CierreDeCajaId = cierreCaja.Id
-                        };
-                        PagosComisionesList.Add(pagoComision);
                     }
                 }
             }
 
-            cierreCaja.TotalEfectivo -= cierreCaja.TotalRetiro;  // Descuenta los retiros  
-            cierreCaja.TotalEfectivo -= cierreCaja.TotalVuelto; // Descuenta los Vueltos        
+            cierreCaja.TotalEfectivo -= cierreCaja.TotalRetiro;
+            cierreCaja.TotalEfectivo -= cierreCaja.TotalVuelto;
             _context.CierreCaja.Add(cierreCaja);
             await _context.SaveChangesAsync();
 
-            var idCierreCaja = cierreCaja.Id; //Captura el IDCierreCaja
+            var idCierreCaja = cierreCaja.Id;
 
-            //Almacena pago de comisiones por medico
-            PagosComisionesList.GroupBy(p => p.MedicoId).ToList().ForEach(p =>
+            var comisionesPendientes = await _context.PagoDeComisiones
+                .Where(p => p.CierreDeCajaId == 0 && p.FechaDePago.Date == request.FechaHora.Date)
+                .ToListAsync();
+
+            foreach (var comision in comisionesPendientes)
             {
-                var totalComisiones = p.Sum(c => c.Monto);
-                var pagoComision = new PagoDeComisiones
-                {
-                    MedicoId = p.Key,
-                    FechaDePago = DateTime.Now,
-                    MetodoDePago = MedioPagoMap[MedioPagoEnum.EfectivoPeso],
-                    Monto = totalComisiones,
-                    CierreDeCajaId = idCierreCaja
-                };
-                _context.PagoDeComisiones.Add(pagoComision);
-            });
+                comision.CierreDeCajaId = idCierreCaja;
+                _context.PagoDeComisiones.Update(comision);
+            }
 
             // Se agrega campo idCierreCaja en MovimientosCaja
             foreach (var movimiento in movimientosCaja)
@@ -361,6 +346,10 @@ namespace clinichm_api.Repositories
                     Fecha = _context.MovimientosCaja.FirstOrDefault(mov => mov.Id == p.MovId)!.FechaHora,
                     Medico = _context.Medicos.FirstOrDefault(med => med.Id == p.MedicoId)!.Nombre + " " +
                              _context.Medicos.FirstOrDefault(med => med.Id == p.MedicoId)!.Apellido,
+                    Paciente = _context.Pacientes.FirstOrDefault(pac => pac.Id ==
+                                   _context.MovimientosCaja.FirstOrDefault(mov => mov.Id == p.MovId)!.IdPaciente)!.Nombre + " " +
+                               _context.Pacientes.FirstOrDefault(pac => pac.Id ==
+                                   _context.MovimientosCaja.FirstOrDefault(mov => mov.Id == p.MovId)!.IdPaciente)!.Apellido,
                     Producto = _context.Producto.FirstOrDefault(prod => prod.Id == p.ProductoId)!.Nombre,
                     CantProd = p.Cantidad
 

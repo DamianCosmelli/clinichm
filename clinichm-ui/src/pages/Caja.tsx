@@ -365,6 +365,7 @@ const Caja: React.FC = () => {
               <option value="cobro">Cobro</option>
               <option value="vuelto">Vuelto</option>
               <option value="retiro">Retiro</option>
+              <option value="pago comision">Pago comision</option>
             </select>
           </div>
           <div className="dropdown-caja">
